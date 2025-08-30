@@ -10,6 +10,17 @@ add_library(WireLink::Backend ALIAS WireLinkBackend)
 # Set C++ standard using target_compile_features
 target_compile_features(WireLinkBackend PUBLIC cxx_std_17)
 
+target_include_directories(WireLinkBackend
+	PUBLIC
+		${CMAKE_SOURCE_DIR}/include #/WireLinkBackend/abi
+		${CMAKE_CURRENT_BINARY_DIR}/include #/WireLinkBackend/not abi
+)
+
+target_include_directories(WireLinkBackend
+	PRIVATE
+		${CMAKE_SOURCE_DIR}/src #/WireLinkBackend/not abi
+)
+
 # Compiler flags
 	# Warning flags - MSVC
 	target_compile_options(WireLinkBackend PRIVATE
