@@ -10,13 +10,13 @@ extern "C" {
 
 typedef struct DataPacket {
     // ip and port of the sender
-    uint8_t sender_addr_data[28]; // Max size for sockaddr_in6
-    
+    uint8_t sender_addr_data[28]; // has the capacity to contain both sockaddr_in (for ipv4) and sockaddr_in6 (for ipv6)
+
     int size;
     uint8_t* data;
 } DataPacket;
 
-WIRELINKBACKEND_EXPORT DataPacket* WaitForData();
+WIRELINKBACKEND_EXPORT DataPacket WaitForData();
 
 #ifdef __cplusplus
 }
